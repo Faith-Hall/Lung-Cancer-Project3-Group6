@@ -1,3 +1,5 @@
+**This ReadMe to be deleted or integrated to overall ReadMe before submitting**
+
 Used to import csv to SQlite
 https://stackoverflow.com/questions/14947916/import-csv-to-sqlite
 run: 
