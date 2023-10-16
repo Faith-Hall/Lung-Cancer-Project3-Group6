@@ -52,8 +52,9 @@ def cancer():
         cancer_dict.pop('_sa_instance_state', None)
         cancer_list.append(cancer_dict)
         # print (cancer_dict)
-
-    return cancer_list
+    response = jsonify(cancer_list)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 if __name__ == "__main__":
     app.run(debug=True)
