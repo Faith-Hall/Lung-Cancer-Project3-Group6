@@ -39,10 +39,10 @@ session = Session(engine)
 # Flask Setup
 #################################################
 
-app = Flask (__name__)
+app = Flask(__name__)
 
 # Creates cancer route that returns jsonified data of all of the data in the database
-@app.route("/api/v1.0/cancer")    
+@app.route("/")    
 def cancer():
     cancer_data = session.query(Cancer).all()
 
