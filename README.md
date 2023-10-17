@@ -2,7 +2,7 @@
 <font size="3">**Group-Project-3: Team 6**  
 **Contributors:** Kyle Dalton, Faith Hall, Thomas Keene, Cassia Yoon  
 **Github link:** https://github.com/Faith-Hall/Lung-Cancer-Project3-Group6  
-**Presentation link:** LINK???  
+**Presentation link:** https://docs.google.com/presentation/d/1is7is2i6eAjvKeqRUmfpBk0Rcqw2cOpVEvVM5CwVK7U/edit?usp=sharing  
 </font>  
 
 # Project Overview  
