@@ -50,18 +50,6 @@ function onEachFeature(feature, layer) {
 
     });
 }
-// Use D3 library to fetch data
-d3.json(url).then(function (data) {
-<<<<<<< HEAD
-    console.log(data)
-});
-
-// Bar chart 
-// Trace 1 for gender cancer data 
-let trace1 = {
-    
-}
-=======
     console.log(data);
    
     console.log(statesData);
@@ -83,4 +71,3 @@ let trace1 = {
 
 });
 
->>>>>>> 781c754ef6e7a01de569020f46926228c096766f
