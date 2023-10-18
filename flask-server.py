@@ -33,6 +33,7 @@ print(Cancer.__dict__)
 
 # Create our session (link) from Python to the DB
 session = Session(engine)
+cancer_data = session.query(Cancer).all()
 
 
 #################################################
@@ -40,12 +41,14 @@ session = Session(engine)
 #################################################
 
 app = Flask(__name__)
-
+#Create Landing page for website
+@app.route("/")
+def landing():
+    return "Home page for Project 3 Group 6 - Lung Cancer Project"
 # Creates cancer route that returns jsonified data of all of the data in the database
-@app.route("/")    
+@app.route("/raw-lung-cancer-data")    
 def cancer():
-    cancer_data = session.query(Cancer).all()
-
+   
     cancer_list = []
     for cancer in cancer_data:
         cancer_dict = cancer.__dict__
