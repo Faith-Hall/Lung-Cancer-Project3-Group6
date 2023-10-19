@@ -49,7 +49,7 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlight
 
     });
-}
+
     console.log(data);
    
     console.log(statesData);
@@ -69,5 +69,5 @@ function onEachFeature(feature, layer) {
     }).addTo(myMap);
    
 
-});
+};
 
