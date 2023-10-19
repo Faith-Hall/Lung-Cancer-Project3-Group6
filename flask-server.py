@@ -23,17 +23,14 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(autoload_with=engine)
 
-print(Base.classes.keys()) 
+# print(Base.classes.keys()) 
 
 # Save references to each table
 
 Cancer = Base.classes.cancer
-print(Cancer.__dict__) 
+# print(Cancer.__dict__) 
 
 
-# Create our session (link) from Python to the DB
-session = Session(engine)
-cancer_data = session.query(Cancer).all()
 
 
 #################################################
@@ -48,7 +45,10 @@ def landing():
 # Creates cancer route that returns jsonified data of all of the data in the database
 @app.route("/raw-lung-cancer-data")    
 def cancer():
-   
+   # Create our session (link) from Python to the DB
+    session = Session(engine)
+    cancer_data = session.query(Cancer).all()
+
     cancer_list = []
     for cancer in cancer_data:
         cancer_dict = cancer.__dict__
@@ -57,6 +57,8 @@ def cancer():
         # print (cancer_dict)
     response = jsonify(cancer_list)
     response.headers.add("Access-Control-Allow-Origin", "*")
+
+    session.close()
     return response
 
 if __name__ == "__main__":
