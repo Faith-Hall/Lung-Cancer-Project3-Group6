@@ -50,8 +50,6 @@ function onEachFeature(feature, layer) {
 
     });
 }
-// Use D3 library to fetch data
-d3.json(url).then(function (data) {
     console.log(data);
    
     console.log(statesData);
