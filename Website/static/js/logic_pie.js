@@ -3,7 +3,7 @@ const url = "http://127.0.0.1:5000/raw-lung-cancer-data";
 
 // Promise pending
 const dataPromise = d3.json(url);
-console.log("Data Promise:", dataPromise);
+console.log(states);
 
 d3.json(url).then(function(data) {
     console.log(data);
@@ -19,11 +19,10 @@ function init() {
         
         // Set a variable for the state names
         let states = [];
-        console.log(states);
 
         // Add samples to dropdown menu
-        state.forEach((name) => {
-            console.log(state);
+        states.forEach((name) => {
+            console.log(states);
             dropdownMenu.append("option").text(name).property("value",name);
         });
     });
