@@ -16,15 +16,15 @@ function init() {
 
     // Use D3 to get sample names and populate the drop-down selector
     d3.json(url).then((data) => {
-        
+        console.log(data);
     // Empty list for states 
     let states = []
 
     // Loop to filter out the states
     data.forEach((state) => {
-        console.log(states)
+        // console.log(states)
         state = state.LocationAbbr
-        console.log(state)
+        // console.log(state)
         states.push(state)
     });
     console.log(states)
@@ -33,14 +33,32 @@ function init() {
         index) => states.indexOf(item) === index);
         // Loop through states and append
         states.forEach((name) => {
-            console.log(states);
+            // console.log(states);
             dropdownMenu.append("option").text(name).property("value",name);
+           
+            // Empty list for strat
+            let strats = []
 
-            // create pie chart
-            piechart = []
+            // Loop to get the stratifications
+            data.forEach((strat) => {
+                // console.log(strats)
+                strat = strat.Stratification1
+                // console.log(strat)
+            });
+
+            // Empty list for holding stratification values 
+            let stratsValues = []
+
+            // Loop to get the stratification values
+            data.forEach((stratValue) => {
+                // console.log(stratsValues)
+                stratValue = stratValue.DataValue
+                // console.log(stratValue)
+            });
         });
     });
 };
+
 
 // Initialize
 init();
