@@ -12,9 +12,10 @@
 Dataset used:  
 - Cancer dataset: https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators-Cancer/u9ek-bct3  
 
-Coding resources:
-<!-- - link   -->
-- 
+Resources used for JS library Highcharts:
+- https://www.highcharts.com/
+- https://www.highcharts.com/demo/highcharts/bar-negative-stack
+- https://api.highcharts.com/highcharts/
 
 # Acknowledgements
 We wish to thank our teaching staff:
