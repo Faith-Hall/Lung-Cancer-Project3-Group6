@@ -40,7 +40,18 @@ Interactive negative stacked bar chart:
 ![negative-stacked-chart](/Readme_imgs/A_4_chart1.png)
 
 # Analyzing the Data
-By studying the above visualizations, we can observe that lung cancer appears to be most prevalent near major bodies of water (The Pacific and Atlantic Oceans, and the Great Lakes region) except for the New England Region. 
+By studying the map, we can observe that lung cancer appears to be most prevalent near major bodies of water (The Pacific and Atlantic Oceans, and the Great Lakes region) except for the New England Region.
+| US Regions                                 | Interactive Map                     |
+| ------------------------------------------ | ----------------------------------- |
+| ![us-regions](/Readme_imgs/regions-us.png) | ![a1-map](/Readme_imgs/A_1_map.png) |
+
+The interactive bar and pie charts allowed us to explore the data for each state with more ease. Upon studying them, we found that there was missing data, especially when it came to race/ethnicities. We suspect that this is likely due to people leaving that information blank. This illustrates the limitation of our data.
+| Visualization                               | Database                                        |
+| ------------------------------------------- | ----------------------------------------------- |
+| ![IL-img](/Readme_imgs/IL_missing_bars.png) | ![sqlite-img](/Readme_imgs/IL_missing_data.png) |
+
+By studying the stacked bar chart, we can observe that there is an even distributions between genders across the states (like a mirror image).
+![negative-stacked-chart](/Readme_imgs/A_4_chart1.png)
 
 # Resources  
 Dataset used:  
