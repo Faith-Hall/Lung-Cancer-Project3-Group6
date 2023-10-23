@@ -45,11 +45,11 @@ By studying the map, we can observe that lung cancer appears to be most prevalen
 | ------------------------------------------ | ----------------------------------- |
 | ![us-regions](/Readme_imgs/regions-us.png) | ![a1-map](/Readme_imgs/A_1_map.png) |
 
-The interactive bar and pie charts allowed us to explore the data for each state with more ease. Upon studying them, we found that there was missing data, especially when it came to race/ethnicities. We suspect that this is likely due to people leaving that information blank. This illustrates the limitation of our data.
+The interactive bar and pie charts allowed us to explore the data for each state with more ease. Upon studying them, we found that there was missing data, especially when it came to race/ethnicities. And in the case of Kansas, there is only data for the Hispanic category. We suspect that this is likely due to people leaving that information blank. This illustrates the limitation of our data.  
 | Visualization                               | Database                                        |
 | ------------------------------------------- | ----------------------------------------------- |
 | ![IL-img](/Readme_imgs/IL_missing_bars.png) | ![sqlite-img](/Readme_imgs/IL_missing_data.png) |  
-In the case of Kansas, there is only data for the Hispanic category.
+Furthermore, it would be interesting to cross-reference this cancer dataset with US census data about ethnicity/race and gender.  
 
 By studying the stacked bar chart, we can observe that there is an even distributions between genders across the states (the bars look like a mirror image from the center). This suggested that there was no significant statistical difference between male and female incidence of cancer.  
 ![negative-stacked-chart](/Readme_imgs/A_4_chart1_smaller.png)  
