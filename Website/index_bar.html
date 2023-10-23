@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Lung Cancer By Ethnicity</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/style-kyle.css">
 </head>
 
 <body>
@@ -25,23 +26,33 @@
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <div id="bar"></div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <div id="pie"></div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
+      <div class="col-md-4">
+        <div id="negativeStack"><p>This will be the negative stack</p></div>
       </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="map"></div>
+        </div>
     </div>
   </div>
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
+ <!-- Leaflet JS -->
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+ integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+ crossorigin=""></script>
+<!-- D3 JavaScript -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://leafletjs.com/examples/choropleth/us-states.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="./static/js/logic_bar.js"></script>
+  <!-- <script type="text/javascript" src="static/js/logic-kyle.js"></script> -->
 
 </body>
 
