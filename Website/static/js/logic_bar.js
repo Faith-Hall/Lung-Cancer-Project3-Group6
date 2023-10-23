@@ -617,20 +617,20 @@ function barChart(selectedState) {
         
         Plotly.newPlot('pie', data, layout);
 
-        let maleValues = stateData.filter(state => state.Stratification1 === "Male");
-      //  //  console.log(maleValues)
-      //  //  console.log(states)
+          let maleValues = stateData.filter(state => state.Stratification1 === "Male");
+        console.log(maleValues)
+        console.log(states)
 
-      let femaleValues = stateData.filter(state => state.Stratification1 === "Female");
-      //  //  console.log(femaleValues)
+        let femaleValues = stateData.filter(state => state.Stratification1 === "Female");
+        console.log(femaleValues)
 
-      f_Values = []
-      m_Values = []
+        f_Values = []
+        m_Values = []
 
-      // Loop to get the stratifications
-      maleValues.forEach((value) => {
-          m_Values.push(-parseInt(value.DataValue, 10))
-      });
+        // Loop to get the stratifications
+        maleValues.forEach((value) => {
+            m_Values.push(-parseInt(value.DataValue, 10))
+        });
 
       femaleValues.forEach((value) => {
           f_Values.push(parseInt(value.DataValue, 10))
@@ -639,86 +639,83 @@ function barChart(selectedState) {
       //  //  console.log(m_Values)
       //  //  console.log(f_Values)
 
-      // HIGHCHARTS:
+        // HIGHCHARTS:
 
-      // Custom template helper
-      Highcharts.Templating.helpers.abs = value => Math.abs(value);
+        // Custom template helper
+        Highcharts.Templating.helpers.abs = value => Math.abs(value);
 
-      // Age categories
-      const categories = states;
+        // Age categories
+        const categories = states;
 
-      Highcharts.chart('container', {
-          chart: {
-              type: 'bar'
-          },
-          title: {
-              text: 'lung canc......',
-              align: 'left'
-          },
-          accessibility: {
-              point: {
-                  valueDescriptionFormat: '{index}. Age {xDescription}, {value}%.'
-              }
-          },
-          xAxis: [{
-              categories: categories,
-              reversed: false,
-              labels: {
-                  step: 1
-              },
-              accessibility: {
-                  description: 'Age (male)'
-              }
-          }, { // mirror axis on right side
-              opposite: true,
-              reversed: false,
-              categories: categories,
-              linkedTo: 0,
-              labels: {
-                  step: 1
-              },
-              accessibility: {
-                  description: 'Age (female)'
-              }
-          }],
-          yAxis: {
-              title: {
-                  text: null
-              },
-              labels: {
-                  format: '{abs value}%'
-              },
-              accessibility: {
-                  description: 'Percentage population',
-                  rangeDescription: 'Range: 0 to 5%'
-              }
-          },
+        Highcharts.chart('container', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'lung canc......',
+                align: 'left'
+            },
+            accessibility: {
+                point: {
+                    valueDescriptionFormat: '{index}. Age {xDescription}, {value}%.'
+                }
+            },
+            xAxis: [{
+                categories: categories,
+                reversed: false,
+                labels: {
+                    step: 1
+                },
+                accessibility: {
+                    description: 'Age (male)'
+                }
+            }, { // mirror axis on right side
+                opposite: true,
+                reversed: false,
+                categories: categories,
+                linkedTo: 0,
+                labels: {
+                    step: 1
+                },
+                accessibility: {
+                    description: 'Age (female)'
+                }
+            }],
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{abs value}%'
+                },
+                accessibility: {
+                    description: 'Percentage population',
+                    rangeDescription: 'Range: 0 to 5%'
+                }
+            },
 
-          plotOptions: {
-              series: {
-                  stacking: 'normal',
-                  borderRadius: '50%'
-              }
-          },
+            plotOptions: {
+                series: {
+                    stacking: 'normal',
+                    borderRadius: '50%'
+                }
+            },
 
-          tooltip: {
-              format: '<b>{series.name}, age {point.category}</b><br/>' +
-                  'Population: {(abs point.y):.1f}%'
-          },
+            tooltip: {
+                format: '<b>{series.name}, age {point.category}</b><br/>' +
+                    'Population: {(abs point.y):.1f}%'
+            },
 
-          series: [{
-              name: 'Male',
-              data: m_Values
-          }, {
-              name: 'Female',
-              data: f_Values
-          }]
-      });
-  });
+            series: [{
+                name: 'Male',
+                data: m_Values
+            }, {
+                name: 'Female',
+                data: f_Values
+            }]
+        });
+    });
 };
-
-
-
 
 // Create a Function that updates the dashboard when the state is changed
 function optionChanged(selectedState) { 
