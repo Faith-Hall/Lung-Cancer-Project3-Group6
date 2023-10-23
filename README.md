@@ -50,7 +50,7 @@ The interactive bar and pie charts allowed us to explore the data for each state
 | ------------------------------------------- | ----------------------------------------------- |
 | ![IL-img](/Readme_imgs/IL_missing_bars.png) | ![sqlite-img](/Readme_imgs/IL_missing_data.png) |
 
-By studying the stacked bar chart, we can observe that there is an even distributions between genders across the states (like a mirror image).
+By studying the stacked bar chart, we can observe that there is an even distributions between genders across the states (like a mirror image).  
 ![negative-stacked-chart](/Readme_imgs/A_4_chart1_small.png)
 
 # Resources  
