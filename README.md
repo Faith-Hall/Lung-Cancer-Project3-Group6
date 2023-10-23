@@ -19,7 +19,28 @@ Resources used for JS library Highcharts:
 - https://www.highcharts.com/demo/highcharts/bar-negative-stack
 - https://api.highcharts.com/highcharts/
 
-- 
+Resources used for interactive map:
+- https://leafletjs.com
+  
+Tools:
+- https://www.sqlite.org/index.html
+- https://flask.palletsprojects.com/en/3.0.x/
+
+# Data Preparation
+The dataset "U.S. Chronic Disease Indicators: Cancer" was obtained from the Centers for Disease Control and Prevention (CDC) website (linked above) as a downloadable CSV file. Once downloaded, the data was prepared for subsequent analysis as follows:
+- The raw CSV data was first filtered on "Question" to obtain only the records for "Cancer of the lung and bronchus, incidence"
+- The dataset was then filtered on "YearStart" and "YearEnd" to obtain only those records for the time period of interest (2015 - 2019)
+- The dataset was then filtered on "DataValueType" to obtain only those records for "Average Annual Number"
+- The dataset was then cleaned by the removal of extraneous columns in order to leave only the columns of interest ("YearStart", "YearEnd", "LocationAbbr", "Question", "DataValueType", "DataValue", "DataValueAlt", "StratificationCategory1", "Stratification1", "LocationID", StratificationCategoryID1", and "StratificationID1")
+
+Once filtered, sorted, and cleaned as described above, the csv file was then imported into a SQLite database.
+
+Finally, Flask was employed to serve the data from the SQLite database as a JSON object.
+
+# Visualizing the Data
+
+
+
 
 # Acknowledgements
 We wish to thank our teaching staff:
