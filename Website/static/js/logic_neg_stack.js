@@ -197,9 +197,6 @@ function barChart(selectedState) {
         console.log(m_Values)
         console.log(f_Values)
 
-        // statistical analysis by Gender
-        
-
         // HIGHCHARTS template: negative stack chart:
         Highcharts.Templating.helpers.abs = value => Math.abs(value);
 
