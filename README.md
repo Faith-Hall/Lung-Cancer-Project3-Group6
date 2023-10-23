@@ -37,7 +37,7 @@ Interactive bar and pie charts:
 Interactive negative stacked bar chart:
 - The negative stacked bar chart shows the overall picture of the incidences of lung and bronchus cancer by gender by state. The user is able to scroll their mouse over each bar to see the state, gender and the average annual lung cancer incidence per 100,000. Examples are shown in the screen captures below:
 
-![negative-stacked-chart](/Readme_imgs/A_4_chart.png)
+![negative-stacked-chart](/Readme_imgs/A_4_chart1.png)
 
 # Analyzing the Data
 By studying the above visualizations, we can observe that lung cancer appears to be most prevalent near major bodies of water (The Pacific and Atlantic Oceans, and the Great Lakes region) except for the New England Region. 
