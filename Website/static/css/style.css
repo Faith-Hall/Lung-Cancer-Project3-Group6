@@ -11,7 +11,7 @@ html {
 
 /* neg-stack css */
 #container {
-  height: 400px;
+  height: 850px;
 }
 
 .highcharts-figure,
@@ -34,7 +34,7 @@ html {
 .highcharts-data-table caption {
   padding: 1em 0;
   font-size: 1.2em;
-  color: #555;
+  color: #2e2e2e;
 }
 
 .highcharts-data-table th {
