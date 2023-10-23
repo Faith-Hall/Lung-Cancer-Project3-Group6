@@ -10,6 +10,8 @@ d3.json(url).then(function(data) {
     console.log(data);
 });
 
+let states = [];
+
 // Initialize the dashboard and plots
 function init() {
 
@@ -20,7 +22,7 @@ function init() {
     d3.json(url).then((data) => {
 
         // Create an open list to hold the state abbreviations
-        let states = [];
+        states = [];
 
         // Loop through the data to filter out the states
         data.forEach((state) => {
@@ -149,6 +151,28 @@ function barChart(selectedState) {
           };
           
           Plotly.newPlot('pie', data, layout);
+
+          let maleValues = stateData.filter(state => state.Stratification1 === "Male");
+        console.log(maleValues)
+        console.log(states)
+
+        let femaleValues = stateData.filter(state => state.Stratification1 === "Female");
+        console.log(femaleValues)
+
+        f_Values = []
+        m_Values = []
+
+        // Loop to get the stratifications
+        maleValues.forEach((value) => {
+            m_Values.push(value.DataValue)
+        });
+
+        femaleValues.forEach((value) => {
+            f_Values.push(value.DataValue)
+        });
+        
+        console.log(m_Values)
+        console.log(f_Values)
     });
 };
 
