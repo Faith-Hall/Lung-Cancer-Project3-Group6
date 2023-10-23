@@ -38,8 +38,16 @@ Once filtered, sorted, and cleaned as described above, the csv file was then imp
 Finally, Flask was employed to serve the data from the SQLite database as a JSON object.
 
 # Visualizing the Data
+To explore the dataset, the following visualizations were created:
 
+Interactive map:
+- The interactive map allows the user to obtain the data for the overall incidence of lung and bronchus cancer. To use the map, simply mouse over the state of interest, and observe the data displayed in the pop-up:
 
+![Screenshot 2023-10-23 at 3 15 23 PM](https://github.com/Faith-Hall/Lung-Cancer-Project3-Group6/assets/137319054/c31fac0c-3e51-4053-9d3c-951bbb1fbb9a)
+
+Interactive bar and pie charts:
+- The 
+  
 
 
 # Acknowledgements
