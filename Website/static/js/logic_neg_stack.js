@@ -10,17 +10,19 @@ d3.json(url).then(function(data) {
     console.log(data);
 });
 
+let states = [];
+
 // Initialize the dashboard and plots
 function init() {
 
-    // // Use D3 to select the dropdown menu
-    // let dropdownMenu = d3.select('#selDataset');
+    // Use D3 to select the dropdown menu
+    let dropdownMenu = d3.select('#selDataset');
 
     // Use D3 to get the state abbreviations for populating the dropdown selections
     d3.json(url).then((data) => {
 
         // Create an open list to hold the state abbreviations
-        let states = [];
+        states = [];
 
         // Loop through the data to filter out the states
         data.forEach((state) => {
@@ -69,135 +71,233 @@ function init() {
     });
 };
 
+
 // BarChart Function
-// function barChart(selectedState) {
+function barChart(selectedState) {
 
-//     // Fetch all of the data using D3
-//     d3.json(url).then((data) => {
+    // Fetch all of the data using D3
+    d3.json(url).then((data) => {
 
-//         // Retreive the sample data
-//         let stateData = data;
+        // Retreive the sample data
+        let stateData = data;
 
-//         // Filter the state data based on the state location abbreviation
-//         let filteredValues = stateData.filter(state => state.LocationAbbr === selectedState && state.StratificationCategoryID1 === "RACE");
-//         console.log(filteredValues)
+        // Filter the state data based on the state location abbreviation
+        let filteredValues = stateData.filter(state => state.LocationAbbr === selectedState && state.StratificationCategoryID1 === "RACE");
+        console.log(filteredValues)
 
-//         DataValues = []
-//         Stratifications = []
+        DataValues = []
+        Stratifications = []
 
-//         // Loop to get the stratifications
-//         filteredValues.forEach((value) => {
-//             console.log(value)
-//             console.log(value.Stratification1)
-//             console.log(value.DataValue)
-//             DataValues.push(value.DataValue)
-//             Stratifications.push(value.Stratification1)
-//         });
-//         console.log(DataValues, Stratifications)
+        // Loop to get the stratifications
+        filteredValues.forEach((value) => {
+            console.log(value)
+            console.log(value.Stratification1)
+            console.log(value.DataValue)
+            DataValues.push(value.DataValue)
+            Stratifications.push(value.Stratification1)
+        });
+        console.log(DataValues, Stratifications)
 
-//         var data = [
-//             {
-//               x: Stratifications,
-//               y: DataValues,
-//               type: 'bar'
-//             }
-//           ];
+
+        // // Assign the first value
+        // let obj = filteredValues[0];
+
+        // Get the Stratifications and Data Values
+        // let Stratification1= obj.Stratification1;
+        // let DataValue = obj.DataValue;
+        
+        // Log the data to the console
+        // console.log(Stratification1, DataValue);
+
+       // Use Plotly to create the bar chart
+        // Plotly.newPlot('bar', [trace], layout)
+        var data = [
+            {
+              x: Stratifications,
+              y: DataValues,
+              type: 'bar'
+            }
+          ];
           
-//         Plotly.newPlot('bar', data);
-//     });
-// };
+        Plotly.newPlot('bar', data);
+        // Pie
+        // Filter the state data based on the state location abbreviation
+        filteredValues = stateData.filter(state => state.LocationAbbr === selectedState && state.StratificationCategoryID1 === "GENDER");
+        console.log(filteredValues)
 
-// // Create a Function that updates the dashboard when the state is changed
-// function optionChanged(selectedState) { 
+        DataValues = []
+        Stratifications = []
 
-//     // Log the new value
-//     console.log(selectedState); 
+        // Loop to get the stratifications
+        filteredValues.forEach((value) => {
+            console.log(value)
+            console.log(value.Stratification1)
+            console.log(value.DataValue)
+            DataValues.push(value.DataValue)
+            Stratifications.push(value.Stratification1)
+        });
+        console.log(DataValues, Stratifications)
+        var data = [{
+            values: DataValues,
+            labels: Stratifications,
+            type: 'pie'
+          }];
+          
+          var layout = {
+            height: 400,
+            width: 500
+          };
+          
+          Plotly.newPlot('pie', data, layout);
+        
+        // data manipulation for neg-stack chart
+        // sorting data by state abbr alphabetical order   
+        let sortedData = stateData.sort(function(x, y){
+            return d3.ascending(x.LocationAbbr, y.LocationAbbr);
+        });
+        // separating US from the data
+        usData = sortedData.filter(obj => obj.LocationAbbr === "US")
+        sortedData = sortedData.filter(obj => obj.LocationAbbr !== "US")
+        console.log(usData);
+        console.log(sortedData);
 
-//     // Call all functions
-//     barChart(selectedState);
-// };
+        // Create an open list to hold the state abbreviations
+        statesB = [];
+        // Loop through the data to filter out the states
+        sortedData.forEach((state) => {
+            state = state.LocationAbbr
+            statesB.push(state);
+        });
+        // Remove the duplicates from the list of state abbreviations
+        statesB = statesB.filter((item,
+            index) => statesB.indexOf(item) === index);
+        
+        console.log(statesB);
+        
+        // filter male and female data
+        let maleValues = sortedData.filter(state => state.Stratification1 === "Male");
+        console.log(maleValues)
+        
+        let femaleValues = sortedData.filter(state => state.Stratification1 === "Female");
+        console.log(femaleValues)
 
-// HIGHCHARTS:
+        // creating empty arrays
+        f_Values = []
+        m_Values = []
 
-// Custom template helper
-Highcharts.Templating.helpers.abs = value => Math.abs(value);
+        // Loop to get the male and female values and push to the above arrays
+        maleValues.forEach((value) => {
+            m_Values.push(-parseInt(value.DataValue, 10)) // *(-1)to be on the left side of axis
+        });
 
-// Age categories
-const categories = states;
+        femaleValues.forEach((value) => {
+            f_Values.push(parseInt(value.DataValue, 10))
+        });
+        
+        console.log(m_Values)
+        console.log(f_Values)
 
-Highcharts.chart('container', {
-    chart: {
-        type: 'bar'
-    },
-    title: {
-        text: 'Population pyramid for Somalia, 2021',
-        align: 'left'
-    },
-    subtitle: {
-        text: 'Source: <a ' +
-            'href="https://countryeconomy.com/demography/population-structure/somalia"' +
-            'target="_blank">countryeconomy.com</a>',
-        align: 'left'
-    },
-    accessibility: {
-        point: {
-            valueDescriptionFormat: '{index}. Age {xDescription}, {value}%.'
-        }
-    },
-    xAxis: [{
-        categories: categories,
-        reversed: false,
-        labels: {
-            step: 1
-        },
-        accessibility: {
-            description: 'Age (male)'
-        }
-    }, { // mirror axis on right side
-        opposite: true,
-        reversed: false,
-        categories: categories,
-        linkedTo: 0,
-        labels: {
-            step: 1
-        },
-        accessibility: {
-            description: 'Age (female)'
-        }
-    }],
-    yAxis: {
-        title: {
-            text: null
-        },
-        labels: {
-            format: '{abs value}%'
-        },
-        accessibility: {
-            description: 'Percentage population',
-            rangeDescription: 'Range: 0 to 5%'
-        }
-    },
+        // statistical analysis by Gender
+        
 
-    plotOptions: {
-        series: {
-            stacking: 'normal',
-            borderRadius: '50%'
-        }
-    },
+        // HIGHCHARTS template: negative stack chart:
+        Highcharts.Templating.helpers.abs = value => Math.abs(value);
 
-    tooltip: {
-        format: '<b>{series.name}, age {point.category}</b><br/>' +
-            'Population: {(abs point.y):.1f}%'
-    },
+        // state categories
+        const categories = statesB;
 
-    series: [{
-        name: 'Male',
-        data: m_Values
-    }, {
-        name: 'Female',
-        data: f_Values
-    }]
-});
+        Highcharts.chart('container', {
+            chart: {
+                type: 'bar'
+            },
+            legend: {
+                itemStyle: {
+                    fontSize: '15px'
+                }
+            },
+            title: {
+                text: 'Distribution of the Average Annual Incidence of Cancer of the Lung and Bronchus per 100,000 by Gender and State',
+                align: 'left',
+                style: {
+                    fontSize:'20px'
+                }
+            },
+            xAxis: [{
+                categories: categories,
+                reversed: false,
+                labels: {
+                    step: 1,
+                    style: {
+                        fontSize:'15px'
+                    }
+                }
+            }, { // mirror axis on right side
+                opposite: true,
+                reversed: false,
+                categories: categories,
+                linkedTo: 0,
+                labels: {
+                    step: 1,
+                    style: {
+                        fontSize:'15px'
+                    }
+                }
+            }],
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{abs value}',
+                    style: {
+                        fontSize:'15px'
+                    }
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    stacking: 'normal',
+                    borderRadius: '50%',
+                    groupPadding: 0,
+                    pointPadding: 0
+                }
+            },
+
+            tooltip: {
+                format: '<b>{series.name}, {point.category}</b><br/>' +
+                    'Cancer Incidence: <b>{(abs point.y):.1f}</b> per 100,000',
+                style: {
+                    fontSize:'13px'
+                }
+            },
+
+            series: [{
+                name: 'Male',
+                data: m_Values,
+                color: 'rgb(255, 127, 14)',
+            }, {
+                name: 'Female',
+                data: f_Values,
+                color: 'rgb(31, 119, 180)'
+            }],
+
+            exporting: {
+                enabled: false
+            }
+        });
+    });
+};
+
+// Create a Function that updates the dashboard when the state is changed
+function optionChanged(selectedState) { 
+
+    // Log the new value
+    console.log(selectedState); 
+
+    // Call all functions
+    barChart(selectedState);
+};
 
 // Initialize
 init();
