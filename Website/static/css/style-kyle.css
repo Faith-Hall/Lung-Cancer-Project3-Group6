@@ -8,10 +8,6 @@ body,
 html {
   height: 100%;
 }
-p {text-align: center;
-  font-size: 34px;
-  margin: 0
-}
 
 .info {
   padding: 6px 8px;
