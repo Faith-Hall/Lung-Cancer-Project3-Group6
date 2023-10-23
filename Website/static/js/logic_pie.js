@@ -10,9 +10,9 @@ d3.json(url).then(function(data) {
   });
 
 function init() {
-
+    
     // Use D3 to select the dropdown menu
-    let dropdownMenu = d3.select("#selDataset");
+    let dropdownMenu = d3.select("#selDataset")
 
     // Use D3 to get sample names and populate the drop-down selector
     d3.json(url).then((data) => {
@@ -51,7 +51,7 @@ function init() {
 
             // Loop to get the stratification values
             data.forEach((stratValue) => {
-                // console.log(stratsValues)
+                console.log(stratsValues)
                 stratValue = stratValue.DataValue
                 // console.log(stratValue)
             });
