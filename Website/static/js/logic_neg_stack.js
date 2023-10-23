@@ -123,10 +123,7 @@ function init() {
 Highcharts.Templating.helpers.abs = value => Math.abs(value);
 
 // Age categories
-const categories = [
-    '0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-40', '40-45',
-    '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80+'
-];
+const categories = states;
 
 Highcharts.chart('container', {
     chart: {
@@ -195,20 +192,10 @@ Highcharts.chart('container', {
 
     series: [{
         name: 'Male',
-        data: [
-            -8.98, -7.52, -6.65, -5.72, -4.85,
-            -3.71, -2.76, -2.07, -1.70, -1.47,
-            -1.22, -0.99, -0.81, -0.62, -0.41,
-            -0.23, -0.15
-        ]
+        data: m_Values
     }, {
         name: 'Female',
-        data: [
-            8.84, 7.42, 6.57, 5.68, 4.83,
-            3.74, 2.80, 2.14, 1.79, 1.59,
-            1.34, 1.06, 0.83, 0.63, 0.43,
-            0.25, 0.19
-        ]
+        data: f_Values
     }]
 });
 

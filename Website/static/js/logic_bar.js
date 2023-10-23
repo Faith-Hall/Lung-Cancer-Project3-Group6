@@ -164,15 +164,91 @@ function barChart(selectedState) {
 
         // Loop to get the stratifications
         maleValues.forEach((value) => {
-            m_Values.push(value.DataValue)
+            m_Values.push(-parseInt(value.DataValue, 10))
         });
 
         femaleValues.forEach((value) => {
-            f_Values.push(value.DataValue)
+            f_Values.push(parseInt(value.DataValue, 10))
         });
         
         console.log(m_Values)
         console.log(f_Values)
+
+        // HIGHCHARTS:
+
+        // Custom template helper
+        Highcharts.Templating.helpers.abs = value => Math.abs(value);
+
+        // Age categories
+        const categories = states;
+
+        Highcharts.chart('container', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'lung canc......',
+                align: 'left'
+            },
+            accessibility: {
+                point: {
+                    valueDescriptionFormat: '{index}. Age {xDescription}, {value}%.'
+                }
+            },
+            xAxis: [{
+                categories: categories,
+                reversed: false,
+                labels: {
+                    step: 1
+                },
+                accessibility: {
+                    description: 'Age (male)'
+                }
+            }, { // mirror axis on right side
+                opposite: true,
+                reversed: false,
+                categories: categories,
+                linkedTo: 0,
+                labels: {
+                    step: 1
+                },
+                accessibility: {
+                    description: 'Age (female)'
+                }
+            }],
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{abs value}%'
+                },
+                accessibility: {
+                    description: 'Percentage population',
+                    rangeDescription: 'Range: 0 to 5%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    stacking: 'normal',
+                    borderRadius: '50%'
+                }
+            },
+
+            tooltip: {
+                format: '<b>{series.name}, age {point.category}</b><br/>' +
+                    'Population: {(abs point.y):.1f}%'
+            },
+
+            series: [{
+                name: 'Male',
+                data: m_Values
+            }, {
+                name: 'Female',
+                data: f_Values
+            }]
+        });
     });
 };
 
