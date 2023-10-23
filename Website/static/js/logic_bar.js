@@ -120,6 +120,35 @@ function barChart(selectedState) {
           ];
           
         Plotly.newPlot('bar', data);
+        // Pie
+        // Filter the state data based on the state location abbreviation
+        filteredValues = stateData.filter(state => state.LocationAbbr === selectedState && state.StratificationCategoryID1 === "GENDER");
+        console.log(filteredValues)
+
+        DataValues = []
+        Stratifications = []
+
+        // Loop to get the stratifications
+        filteredValues.forEach((value) => {
+            console.log(value)
+            console.log(value.Stratification1)
+            console.log(value.DataValue)
+            DataValues.push(value.DataValue)
+            Stratifications.push(value.Stratification1)
+        });
+        console.log(DataValues, Stratifications)
+        var data = [{
+            values: DataValues,
+            labels: Stratifications,
+            type: 'pie'
+          }];
+          
+          var layout = {
+            height: 400,
+            width: 500
+          };
+          
+          Plotly.newPlot('pie', data, layout);
     });
 };
 
