@@ -38,7 +38,7 @@ Once filtered, sorted, and cleaned as described above, the csv file was then imp
 Finally, Flask was employed to serve the data from the SQLite database as a JSON object.
 
 # Visualizing the Data
-To explore the dataset, the following visualizations were created:
+To explore the dataset, the following visualizations were created for our website:
 
 Interactive map:
 - The interactive map allows the user to obtain the data for the overall incidence of lung and bronchus cancer. To use the map, simply mouse over the state of interest, and observe the data displayed in the pop-up:
@@ -46,9 +46,11 @@ Interactive map:
 ![Screenshot 2023-10-23 at 3 15 23 PM](https://github.com/Faith-Hall/Lung-Cancer-Project3-Group6/assets/137319054/c31fac0c-3e51-4053-9d3c-951bbb1fbb9a)
 
 Interactive bar and pie charts:
-- The 
-  
+- The following section of the website "Lung Cancer By Ethnicity and Gender Dashboard" allows the user to explore trends in incidence of lung and bronchus cancer based on both gender and ethnicity by state. Selecting a state from the drop-down menu subsequently populates bar charts and pie charts based on these stratifications. Examples are shown in the screen captures below:
 
+![Screenshot 2023-10-23 at 3 32 18 PM](https://github.com/Faith-Hall/Lung-Cancer-Project3-Group6/assets/137319054/3539a6aa-85d8-4ea6-833b-181d68eef35c)
+
+![Screenshot 2023-10-23 at 3 33 50 PM](https://github.com/Faith-Hall/Lung-Cancer-Project3-Group6/assets/137319054/b5ff3d96-ee2e-4911-8286-8ca1e0abe9a3)
 
 # Acknowledgements
 We wish to thank our teaching staff:
