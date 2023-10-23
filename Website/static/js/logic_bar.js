@@ -152,19 +152,44 @@ function barChart(selectedState) {
           
           Plotly.newPlot('pie', data, layout);
 
-          let maleValues = stateData.filter(state => state.Stratification1 === "Male");
-        console.log(maleValues)
-        console.log(states)
+        
+        // data manipulation for neg-stack chart
+        // sorting data by state abbr alphabetical order   
+        let sortedData = stateData.sort(function(x, y){
+            return d3.ascending(x.LocationAbbr, y.LocationAbbr);
+        });
+        // separating US from the data
+        usData = sortedData.filter(obj => obj.LocationAbbr === "US")
+        sortedData = sortedData.filter(obj => obj.LocationAbbr !== "US")
+        console.log(usData);
+        console.log(sortedData);
 
-        let femaleValues = stateData.filter(state => state.Stratification1 === "Female");
+        // Create an open list to hold the state abbreviations
+        statesB = [];
+        // Loop through the data to filter out the states
+        sortedData.forEach((state) => {
+            state = state.LocationAbbr
+            statesB.push(state);
+        });
+        // Remove the duplicates from the list of state abbreviations
+        statesB = statesB.filter((item,
+            index) => statesB.indexOf(item) === index);
+        console.log(statesB);
+        
+        // filter male and female data
+        let maleValues = sortedData.filter(state => state.Stratification1 === "Male");
+        console.log(maleValues)
+        
+        let femaleValues = sortedData.filter(state => state.Stratification1 === "Female");
         console.log(femaleValues)
 
+        // creating empty arrays
         f_Values = []
         m_Values = []
 
-        // Loop to get the stratifications
+        // Loop to get the male and female values and push to the above arrays
         maleValues.forEach((value) => {
-            m_Values.push(-parseInt(value.DataValue, 10))
+            m_Values.push(-parseInt(value.DataValue, 10)) // *(-1)to be on the left side of axis
         });
 
         femaleValues.forEach((value) => {
@@ -174,35 +199,37 @@ function barChart(selectedState) {
         console.log(m_Values)
         console.log(f_Values)
 
-        // HIGHCHARTS:
 
-        // Custom template helper
+        // HIGHCHARTS template: negative stack chart:
         Highcharts.Templating.helpers.abs = value => Math.abs(value);
-
-        // Age categories
-        const categories = states;
+        
+        // state categories
+        const categories = statesB;
 
         Highcharts.chart('container', {
             chart: {
                 type: 'bar'
             },
-            title: {
-                text: 'lung canc......',
-                align: 'left'
+            legend: {
+                itemStyle: {
+                    fontSize: '15px'
+                }
             },
-            accessibility: {
-                point: {
-                    valueDescriptionFormat: '{index}. Age {xDescription}, {value}%.'
+            title: {
+                text: 'Distribution of the Average Annual Incidence of Cancer of the Lung and Bronchus per 100,000 by Gender and State',
+                align: 'left',
+                style: {
+                    fontSize:'20px'
                 }
             },
             xAxis: [{
                 categories: categories,
                 reversed: false,
                 labels: {
-                    step: 1
-                },
-                accessibility: {
-                    description: 'Age (male)'
+                    step: 1,
+                    style: {
+                        fontSize:'15px'
+                    }
                 }
             }, { // mirror axis on right side
                 opposite: true,
@@ -210,10 +237,10 @@ function barChart(selectedState) {
                 categories: categories,
                 linkedTo: 0,
                 labels: {
-                    step: 1
-                },
-                accessibility: {
-                    description: 'Age (female)'
+                    step: 1,
+                    style: {
+                        fontSize:'15px'
+                    }
                 }
             }],
             yAxis: {
@@ -221,39 +248,46 @@ function barChart(selectedState) {
                     text: null
                 },
                 labels: {
-                    format: '{abs value}%'
-                },
-                accessibility: {
-                    description: 'Percentage population',
-                    rangeDescription: 'Range: 0 to 5%'
+                    format: '{abs value}',
+                    style: {
+                        fontSize:'15px'
+                    }
                 }
             },
 
             plotOptions: {
                 series: {
                     stacking: 'normal',
-                    borderRadius: '50%'
+                    borderRadius: '50%',
+                    groupPadding: 0,
+                    pointPadding: 0
                 }
             },
 
             tooltip: {
-                format: '<b>{series.name}, age {point.category}</b><br/>' +
-                    'Population: {(abs point.y):.1f}%'
+                format: '<b>{series.name}, {point.category}</b><br/>' +
+                    'Cancer Incidence: <b>{(abs point.y):.1f}</b> per 100,000',
+                style: {
+                    fontSize:'13px'
+                }
             },
 
             series: [{
                 name: 'Male',
-                data: m_Values
+                data: m_Values,
+                color: 'rgb(255, 127, 14)',
             }, {
                 name: 'Female',
-                data: f_Values
-            }]
+                data: f_Values,
+                color: 'rgb(31, 119, 180)'
+            }],
+
+            exporting: {
+                enabled: false
+            }
         });
     });
 };
-
-
-
 
 // Create a Function that updates the dashboard when the state is changed
 function optionChanged(selectedState) { 
