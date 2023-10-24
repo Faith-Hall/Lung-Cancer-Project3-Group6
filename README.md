@@ -78,6 +78,10 @@ Tools:
 - https://www.sqlite.org/index.html
 - https://flask.palletsprojects.com/en/3.0.x/
 
+Database help:
+- Used to import csv to SQlite: https://stackoverflow.com/questions/14947916/import-csv-to-sqlite
+- https://stackoverflow.com/questions/23765681/sqlalchemy-automap-does-not-create-class-for-tables-without-primary-key
+
 # Acknowledgements
 We wish to thank our teaching staff:
 - Hunter Hollis
