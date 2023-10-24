@@ -10,6 +10,10 @@ In epidemiology, incidence is a measure of the probability of occurrence of a gi
 
 The aim of this project is to explore the Centers for Disease Control and Prevention (CDC) cancer dataset to uncover potential incidence patterns of lung and bronchus cancer within the United States from 2015 through 2019. Here, we examine the relationships between demographic categories (race/ethnicity and gender), place of residence, and diagnoses of cancer derived from the data.
 
+# To See the Visualizations  
+1. Run the [flask file](/flask-server.py) in the terminal.  
+2. Run the [html code](/Website/index_bar.html) in a browser.   
+
 # Data Preparation
 The dataset "U.S. Chronic Disease Indicators: Cancer" was obtained from the Centers for Disease Control and Prevention (CDC) website (linked above) as a downloadable CSV file. Once downloaded, the data was prepared for subsequent analysis as follows:
 - The raw CSV data was first filtered on "Question" to obtain only the records for "Cancer of the lung and bronchus, incidence"
@@ -39,8 +43,9 @@ Interactive negative stacked bar chart:
 
 ![negative-stacked-chart](/Readme_imgs/A_4_chart1.png)
 
-# Analyzing the Data
-By studying the map, we can observe that lung cancer appears to be most prevalent near major bodies of water (The Pacific and Atlantic Oceans, and the Great Lakes region) except for the New England Region.
+# Analyzing the Data and Conclusions
+By studying the map, we can observe that lung cancer appears to be most prevalent near major bodies of water (The Pacific and Atlantic Oceans, and the Great Lakes region) except for the New England Region.  
+
 | US Regions                                 | Interactive Map                     |
 | ------------------------------------------ | ----------------------------------- |
 | ![us-regions](/Readme_imgs/regions-us.png) | ![a1-map](/Readme_imgs/A_1_map.png) |
@@ -48,16 +53,21 @@ By studying the map, we can observe that lung cancer appears to be most prevalen
 The interactive bar and pie charts allowed us to explore the data for each state with more ease.  
 
 Upon studying them, we found that there was missing data, especially when it came to race/ethnicities. And in the case of Kansas, there is only data for the Hispanic category. We suspect that this is likely due to people leaving that information blank. This illustrates the limitation of our data.  
+
 | Visualization                               | Database                                        |
 | ------------------------------------------- | ----------------------------------------------- |
 | ![IL-img](/Readme_imgs/IL_missing_bars.png) | ![sqlite-img](/Readme_imgs/IL_missing_data.png) |  
 
 The gender pie charts showed that almost all states had higher incidence of cancer in males than females. The exception was Minnesota.  
+
 ![MN-pie](/Readme_imgs/pie-trend.png)  
 
 By studying the stacked bar chart, we can observe that there is an even distributions between genders across the states (the bars look like a mirror image from the center). This suggested that there was no significant statistical difference between male and female incidence of cancer.  
+
 ![negative-stacked-chart](/Readme_imgs/A_4_chart1_smaller.png)  
-This was then confirmed with a t-test analysis which showed a high p-value.  
+
+This was then confirmed with a [t-test analysis](/analysis/analysis_gender.ipynb) which showed a high p-value.  
+
 ![ttest-results](/Readme_imgs/ttest_results.png)  
 
 For future considerations, it would be interesting to cross-reference this cancer dataset with US census data, weather data, and air-quality data.
